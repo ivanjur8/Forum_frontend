@@ -23,6 +23,7 @@ export default {
     name: 'TemaView',
     data () {
         return {
+            teme: [],
             ucitavam: false,
             forma: {
                 naziv: '',

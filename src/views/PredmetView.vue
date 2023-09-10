@@ -1,6 +1,6 @@
 <template>
     <div class="home">
-        <v-data-table :headers="stupci" :items="predmet" :loading="ucitavam">
+        <v-data-table :headers="stupci" :items="predmeti" :loading="ucitavam">
             <template v-slot:[`item.akcije`]="{ item }">
                 <v-btn small color="red" class="white--text" @click="izbrisiPredmet(item.id)">Izbriši</v-btn>
             </template>
@@ -23,6 +23,7 @@ export default {
     name: 'PredmetView',
     data () {
         return {
+            predmeti: [],
             ucitavam: false,
             forma: {
                 naziv: '',

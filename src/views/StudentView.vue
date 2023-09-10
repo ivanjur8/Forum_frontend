@@ -10,8 +10,7 @@
         <v-text-field v-model="forma.prezime" placeholder="Prezime"></v-text-field>
         <v-text-field v-model="forma.email" placeholder="Email"></v-text-field>
         <v-text-field v-model="forma.lozinka" placeholder="Lozinka"></v-text-field>
-        <v-autocomplete :items="spolovi" v-model="forma.spol" placeholder="Spol"></v-autocomplete>
-        <v-btn @click="dodajStudenta">Dodaj učenika</v-btn>
+        <v-btn @click="dodajStudenta">Dodaj studenta</v-btn>
 
         <v-snackbar
                 v-model="snackbar.model" right top
@@ -27,10 +26,6 @@ export default {
     data () {
         return {
             studenti: [],
-            spolovi: [
-                {text: 'Muški', value: 'musko'},
-                {text: 'Ženski', value: 'zensko'}
-            ],
             ucitavam: false,
             forma: {
                 ime: '',
@@ -42,7 +37,6 @@ export default {
                 {text: 'Ime', value: 'ime'},
                 {text: 'Prezime', value: 'prezime'},
                 {text: 'Email', value: 'email'},
-                {text: 'Spol', value: 'spol'},
                 {text: 'Lozinka', value: 'lozinka'},
             ],
             snackbar: {
