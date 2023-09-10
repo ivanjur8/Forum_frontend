@@ -23,7 +23,7 @@
 <script>
 export default {
     name: 'StudentView',
-    data () {
+    data() {
         return {
             studenti: [],
             ucitavam: false,
@@ -31,13 +31,14 @@ export default {
                 ime: '',
                 prezime: '',
                 lozinka: '',
-                spol: '',
+                email: '',
             },
             stupci: [
                 {text: 'Ime', value: 'ime'},
                 {text: 'Prezime', value: 'prezime'},
                 {text: 'Email', value: 'email'},
                 {text: 'Lozinka', value: 'lozinka'},
+                {text: 'Akcije', value: 'akcije'},
             ],
             snackbar: {
                 model: false,
@@ -53,7 +54,7 @@ export default {
         dohvatiStudente: function () {
             this.ucitavam = true;
 
-            this.axios.get('http://localhost:8000/api/studenti/dohvati').then((response) => {
+            this.axios.get('http://localhost:8000/api/student/dohvati').then((response) => {
                 this.studenti = response.data;
             }).catch(() => {
                 this.snackbar.model = true;
@@ -63,31 +64,31 @@ export default {
                 this.ucitavam = false;
             })
         },
-    },
-    dodajStudenta: function () {
-        this.axios.post('http://localhost:8000/api/studenti/dodaj', this.forma).then(() => {
-            this.dohvatiStudente()
-            this.snackbar.color = 'green';
-            this.snackbar.text = 'Uspješno dodan student.';
-        }).catch(() => {
-            this.snackbar.color = 'red';
-            this.snackbar.text = 'Greška pri dodavanju studenta.';
-        }).finally(() => {
-            this.snackbar.model = true;
-        })
-    },
-    izbrisiStudenta: function (id) {
-        this.axios.get('http://localhost:8000/api/studenti/izbrisi/' + id).then(() => {
-            this.dohvatiStudente();
+        dodajStudenta: function () {
+            this.axios.post('http://localhost:8000/api/student/dodaj', this.forma).then(() => {
+                this.dohvatiStudente()
+                this.snackbar.color = 'green';
+                this.snackbar.text = 'Uspješno dodan student.';
+            }).catch(() => {
+                this.snackbar.color = 'red';
+                this.snackbar.text = 'Greška pri dodavanju studenta.';
+            }).finally(() => {
+                this.snackbar.model = true;
+            })
+        },
+        izbrisiStudenta: function (id) {
+            this.axios.get('http://localhost:8000/api/student/izbrisi/' + id).then(() => {
+                this.dohvatiStudente();
 
-            this.snackbar.color = 'green';
-            this.snackbar.text = 'Uspješno izbrisan student.';
-        }).catch(() => {
-            this.snackbar.color = 'red';
-            this.snackbar.text = 'Greška pri brisanju studenta.';
-        }).finally(() => {
-            this.snackbar.model = true;
-        })
+                this.snackbar.color = 'green';
+                this.snackbar.text = 'Uspješno izbrisan student.';
+            }).catch(() => {
+                this.snackbar.color = 'red';
+                this.snackbar.text = 'Greška pri brisanju studenta.';
+            }).finally(() => {
+                this.snackbar.model = true;
+            })
+        },
     },
 }
 </script>

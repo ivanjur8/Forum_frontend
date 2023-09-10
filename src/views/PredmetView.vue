@@ -8,7 +8,7 @@
 
         <v-text-field v-model="forma.naziv" placeholder="Naziv"></v-text-field>
         <v-text-field v-model="forma.opis" placeholder="Opis"></v-text-field>
-        <v-btn @click="dodajPredmet">Dodaj temu</v-btn>
+        <v-btn @click="dodajPredmet">Dodaj Predmet</v-btn>
 
         <v-snackbar
                 v-model="snackbar.model" right top
@@ -32,6 +32,7 @@ export default {
             stupci: [
                 {text: 'Naziv', value: 'naziv'},
                 {text: 'Opis', value: 'opis'},
+                {text: 'Akcije', value: 'akcije'},
             ],
             snackbar: {
                 model: false,
@@ -48,7 +49,7 @@ export default {
             this.ucitavam = true;
 
             this.axios.get('http://localhost:8000/api/pred/dohvati').then((response) => {
-                this.dohvatiPredmete = response.data;
+                this.predmeti = response.data;
             }).catch(() => {
                 this.snackbar.model = true;
                 this.snackbar.color = 'red';

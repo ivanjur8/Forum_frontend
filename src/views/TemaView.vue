@@ -32,6 +32,7 @@ export default {
             stupci: [
                 {text: 'Naziv', value: 'naziv'},
                 {text: 'Opis', value: 'opis'},
+                {text: 'Akcije', value: 'akcije'},
             ],
             snackbar: {
                 model: false,
@@ -48,7 +49,7 @@ export default {
             this.ucitavam = true;
 
             this.axios.get('http://localhost:8000/api/tema/dohvati').then((response) => {
-                this.dohvatiTeme = response.data;
+                this.teme = response.data;
             }).catch(() => {
                 this.snackbar.model = true;
                 this.snackbar.color = 'red';
